@@ -3,6 +3,8 @@ __pycache__/
 *.py[cod]
 venv/
 .venv/
+backend/venv/
+backend/.venv/
 .pytest_cache/
 
 # Environment files
