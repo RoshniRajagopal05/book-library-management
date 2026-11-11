@@ -3,7 +3,11 @@ from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
+# Ensure the database URL from settings is parsed safely
+
+
 class Settings(BaseSettings):
+    
 
     DATABASE_URL: str
 
@@ -28,3 +32,4 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
+

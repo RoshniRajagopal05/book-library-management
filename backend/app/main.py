@@ -9,6 +9,7 @@ from app.api.routes import health
 from app.core.config import settings
 from app.core.logging_config import configure_logging
 from app.middleware.request_logging import RequestLoggingMiddleware
+from app.api.routes import auth
 
 
 configure_logging()
@@ -50,6 +51,11 @@ app.add_middleware(RequestLoggingMiddleware)
 
 # Register API routers
 app.include_router(health.router)
+
+app.include_router(
+    auth.router,
+    prefix="/api"
+)
 
 
 @app.get("/")
