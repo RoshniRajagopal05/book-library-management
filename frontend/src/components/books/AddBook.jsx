@@ -1,26 +1,31 @@
 
 import { useState } from "react";
-import { BookOpen, CheckCircle } from "lucide-react";
+import Notification from "../common/Notification";
+import { BookOpen } from "lucide-react";
 
 import { createBook } from "../../services/bookService";
 
 import styles from "./AddBook.module.css";
 
 function AddBook({ onBookAdded }) {
-
     const [title, setTitle] = useState("");
     const [author, setAuthor] = useState("");
     const [status, setStatus] = useState("Want to Read");
 
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
-    const [success, setSuccess] = useState("");
+
+    const [notification, setNotification] = useState({
+        type: "success",
+        message: ""
+    });
 
     async function handleSubmit(event) {
         event.preventDefault();
 
-        setError("");
-        setSuccess("");
+        setNotification({
+            type: "success",
+            message: ""
+        });
 
         try {
             setLoading(true);
@@ -33,7 +38,10 @@ function AddBook({ onBookAdded }) {
 
             await createBook(bookData);
 
-            setSuccess("Book added successfully!");
+            setNotification({
+                type: "success",
+                message: "Book added successfully!"
+            });
 
             // Clear form fields
             setTitle("");
@@ -48,19 +56,23 @@ function AddBook({ onBookAdded }) {
         } catch (err) {
             console.error("Error adding book:", err);
 
+            let errorMessage = "Unable to add book. Please try again.";
+
             if (err.response?.status === 401) {
-                setError("Your session has expired. Please log in again.");
+                errorMessage = "Your session has expired. Please log in again.";
             } else if (err.response?.data?.detail) {
-                setError(
+                errorMessage =
                     typeof err.response.data.detail === "string"
                         ? err.response.data.detail
-                        : "Please check the book details."
-                );
+                        : "Please check the book details.";
             } else if (!err.response) {
-                setError("Unable to connect to the server.");
-            } else {
-                setError("Unable to add book. Please try again.");
+                errorMessage = "Unable to connect to the server.";
             }
+
+            setNotification({
+                type: "error",
+                message: errorMessage
+            });
 
         } finally {
             setLoading(false);
@@ -95,6 +107,18 @@ function AddBook({ onBookAdded }) {
                 <p className={styles.formDescription}>
                     Enter the details of the book you want to add.
                 </p>
+
+                {/* Notification */}
+                <Notification
+                    type={notification.type}
+                    message={notification.message}
+                    onClose={() =>
+                        setNotification({
+                            type: "success",
+                            message: ""
+                        })
+                    }
+                />
 
                 <form onSubmit={handleSubmit}>
 
@@ -162,24 +186,6 @@ function AddBook({ onBookAdded }) {
                             </option>
                         </select>
                     </div>
-
-                    {/* Success Message */}
-                    {success && (
-                        <div className={styles.successMessage}>
-                            <CheckCircle size={18} />
-                            <span>{success}</span>
-                        </div>
-                    )}
-
-                    {/* Error Message */}
-                    {error && (
-                        <p
-                            className={styles.errorMessage}
-                            role="alert"
-                        >
-                            {error}
-                        </p>
-                    )}
 
                     {/* Submit Button */}
                     <button

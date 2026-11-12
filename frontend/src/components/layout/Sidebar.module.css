@@ -1,44 +1,39 @@
 
 .sidebar {
-    width: 260px;
-    min-height: 100vh;
-    background: var(--color-primary);
-    color: #ffffff;
-
+    width: 245px;
+    height: 100%;
+    min-height: 0;
+    flex-shrink: 0;
     display: flex;
     flex-direction: column;
-
-    padding: 30px 20px;
-
-    flex-shrink: 0;
+    padding: 28px 18px 20px;
+    background: var(--color-primary);
+    color: #ffffff;
 }
 
 .brand {
     display: flex;
     align-items: center;
     gap: 12px;
-
-    padding: 0 10px;
-    margin-bottom: 55px;
+    padding: 0 9px;
+    margin-bottom: 48px;
 }
 
 .logo {
-    width: 44px;
-    height: 44px;
-
+    width: 43px;
+    height: 43px;
     display: flex;
     align-items: center;
     justify-content: center;
-
     background: var(--color-accent);
     color: var(--color-primary);
-
     border-radius: 12px;
 }
 
 .brand h2 {
+    font-family: Georgia, serif;
     font-size: 25px;
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: -1px;
 }
 
@@ -49,39 +44,33 @@
 }
 
 .sectionLabel {
+    padding: 0 12px;
+    margin-bottom: 13px;
+    color: #aab9ae;
     font-size: 10px;
     font-weight: 600;
     letter-spacing: 2px;
-    color: #aab9ae;
-
-    padding: 0 12px;
-    margin-bottom: 15px;
 }
 
 .navigation {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 7px;
 }
 
 .navItem {
+    width: 100%;
     display: flex;
     align-items: center;
     gap: 13px;
-
-    width: 100%;
-    padding: 13px 14px;
-
+    padding: 12px 14px;
     border: none;
-    border-radius: 10px;
-
+    border-radius: 9px;
     background: transparent;
     color: #d2ddd5;
-
     text-align: left;
-    font-size: 14px;
-
-    transition: 0.2s ease;
+    font-size: 13px;
+    transition: background 0.2s ease, color 0.2s ease;
 }
 
 .navItem:hover {
@@ -102,49 +91,66 @@
 
 .sidebarBottom {
     margin-top: auto;
-    padding: 22px 12px;
+    padding: 20px 12px;
 }
 
 .quoteIcon {
     color: var(--color-accent);
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .sidebarBottom p {
     font-family: Georgia, serif;
-    font-size: 14px;
-    line-height: 1.7;
+    font-size: 13px;
+    line-height: 1.65;
     color: #f0eee7;
 }
 
 .sidebarBottom span {
     display: block;
-    margin-top: 10px;
-
-    font-size: 11px;
+    margin-top: 9px;
+    font-size: 10px;
     color: #aab9ae;
+}
+
+.logoutButton {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 14px;
+    margin-bottom: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 9px;
+    background: transparent;
+    color: #d2ddd5;
+    text-align: left;
+    font-size: 13px;
+    transition: 0.2s ease;
+}
+
+.logoutButton:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
 }
 
 .profile {
     display: flex;
     align-items: center;
-    gap: 12px;
-
-    padding: 18px 10px 0;
+    gap: 11px;
+    padding: 16px 8px 0;
     border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .avatar {
-    width: 38px;
-    height: 38px;
-
+    width: 37px;
+    height: 37px;
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-
     background: #e9d8b8;
     color: #263C32;
-
     border-radius: 50%;
     font-weight: 700;
 }
@@ -152,27 +158,30 @@
 .profileInfo {
     display: flex;
     flex-direction: column;
+    min-width: 0;
 }
 
 .profileInfo strong {
-    font-size: 13px;
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .profileInfo span {
-    font-size: 11px;
+    font-size: 10px;
     color: #bdc9c0;
 }
 
 @media (max-width: 760px) {
     .sidebar {
-        width: 76px;
-        padding: 25px 10px;
+        width: 68px;
+        padding: 20px 8px;
         align-items: center;
     }
 
     .brand {
         padding: 0;
-        margin-bottom: 45px;
+        margin-bottom: 35px;
     }
 
     .brand > div:last-child,
@@ -187,50 +196,14 @@
         width: 100%;
     }
 
-    .navItem {
-        justify-content: center;
-        padding: 14px 5px;
-    }
-
-    .profile {
-        padding: 15px 0 0;
-    }
-}
-
-
-/* Logout Button */
-
-.logoutButton {
-    display: flex;
-    align-items: center;
-    gap: 13px;
-
-    width: 100%;
-    padding: 13px 14px;
-    margin-bottom: 18px;
-
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 10px;
-
-    background: transparent;
-    color: #d2ddd5;
-
-    text-align: left;
-    font-size: 14px;
-
-    transition: 0.2s ease;
-}
-
-.logoutButton:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-    border-color: rgba(255, 255, 255, 0.3);
-}
-
-@media (max-width: 760px) {
+    .navItem,
     .logoutButton {
         justify-content: center;
         padding: 13px 5px;
+    }
+
+    .profile {
+        padding: 14px 0 0;
     }
 
     .logoutButton span {

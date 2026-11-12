@@ -1,144 +1,169 @@
 
+/* Main Dashboard */
+
 .dashboard {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 28px;
     width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: none;
+    margin: 0;
 }
 
 /* Welcome Section */
 
 .welcomeSection {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    padding: 28px 32px;
+    background: var(--color-primary);
+    color: white;
+    border-radius: var(--radius-lg);
 }
 
 .eyebrow {
+    display: block;
     color: var(--color-accent);
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
-    letter-spacing: 1.8px;
+    letter-spacing: 2px;
 }
 
 .welcomeSection h2 {
-    color: var(--color-primary);
-    font-size: 30px;
-    font-weight: 700;
-    line-height: 1.3;
+    margin-top: 10px;
+    font-family: Georgia, serif;
+    font-size: 29px;
+    font-weight: 500;
 }
 
 .welcomeSection p {
-    color: var(--color-muted);
-    font-size: 14px;
+    margin-top: 8px;
+    color: #d5ded7;
+    font-size: 13px;
 }
 
 /* Statistics Grid */
 
 .statsGrid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+    width: 100%;
 }
 
 .statCard {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    grid-template-rows: auto auto;
+    align-items: center;
+    column-gap: 14px;
+    padding: 22px;
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
-    padding: 22px;
     box-shadow: var(--shadow-card);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease;
 }
 
 .statCard:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(38, 60, 50, 0.1);
+    transform: translateY(-3px);
 }
 
 .statIcon {
-    width: 44px;
-    height: 44px;
+    grid-column: 1;
+    grid-row: 1 / 3;
+    width: 46px;
+    height: 46px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #F5F0E5;
+    background: #f3ead8;
     color: var(--color-primary);
     border-radius: 12px;
-    margin-bottom: 18px;
 }
 
 .statCard p {
+    grid-column: 2;
+    grid-row: 1;
     color: var(--color-muted);
-    font-size: 13px;
-    margin-bottom: 5px;
+    font-size: 12px;
 }
 
 .statCard h3 {
+    grid-column: 2;
+    grid-row: 2;
+    margin-top: 3px;
     color: var(--color-primary);
-    font-size: 28px;
-    font-weight: 700;
+    font-family: Georgia, serif;
+    font-size: 25px;
+    font-weight: 600;
 }
 
-/* Recent Books Section */
+/* Recently Added Section */
 
 .recentSection {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    padding: 28px;
-    box-shadow: var(--shadow-card);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
 }
 
 .sectionHeading {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    gap: 16px;
-    margin-bottom: 24px;
+    align-items: center;
 }
 
 .sectionHeading h3 {
+    margin-top: 5px;
     color: var(--color-primary);
-    font-size: 22px;
-    margin-top: 4px;
+    font-family: Georgia, serif;
+    font-size: 23px;
+    font-weight: 500;
 }
 
 .bookCount {
-    color: var(--color-muted);
-    font-size: 13px;
+    padding: 7px 13px;
+    background: #eee9df;
+    color: #665b49;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
 }
 
-/* Book List */
+/* Recently Added Book List */
 
 .bookList {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    width: 100%;
 }
 
 .bookItem {
     display: flex;
     align-items: center;
-    gap: 16px;
-    padding: 16px 0;
-    border-bottom: 1px solid var(--color-border);
+    gap: 14px;
+    min-width: 0;
+    padding: 17px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    transition: box-shadow 0.2s ease;
 }
 
-.bookItem:last-child {
-    border-bottom: none;
+.bookItem:hover {
+    box-shadow: var(--shadow-card);
 }
 
 .bookIcon {
-    width: 48px;
-    height: 55px;
+    width: 44px;
+    height: 52px;
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
-    background: #F2EDE1;
+    background: #e8e0cf;
     color: var(--color-primary);
-    border-radius: 7px;
+    border-radius: 5px;
 }
 
 .bookInfo {
@@ -147,25 +172,29 @@
 }
 
 .bookInfo h4 {
+    overflow: hidden;
     color: var(--color-text);
+    font-family: Georgia, serif;
     font-size: 14px;
     font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .bookInfo p {
+    margin-top: 4px;
     color: var(--color-muted);
     font-size: 12px;
-    margin-top: 3px;
 }
 
 .bookStatus {
-    background: var(--color-want);
-    color: var(--color-primary);
-    padding: 6px 12px;
+    flex-shrink: 0;
+    padding: 6px 10px;
+    background: var(--color-reading);
+    color: #315c43;
     border-radius: 20px;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 600;
-    white-space: nowrap;
 }
 
 /* Empty State */
@@ -175,52 +204,62 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    padding: 45px 20px;
+    min-height: 220px;
+    padding: 25px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
     color: var(--color-muted);
+    text-align: center;
 }
 
 .emptyState svg {
+    margin-bottom: 12px;
     color: var(--color-accent);
-    margin-bottom: 14px;
 }
 
 .emptyState h4 {
     color: var(--color-primary);
-    font-size: 17px;
-    margin-bottom: 6px;
+    font-family: Georgia, serif;
+    font-size: 19px;
 }
 
 .emptyState p {
+    margin-top: 7px;
     font-size: 13px;
 }
 
-/* Loading and Error Messages */
+/* Loading and Error */
 
 .message {
+    padding: 20px;
     color: var(--color-muted);
-    padding: 20px 0;
-}
-
-.errorMessage {
-    color: #B42318;
-    background: #FEECEB;
-    border-radius: var(--radius-sm);
-    padding: 14px 18px;
     font-size: 14px;
 }
 
-/* Responsive Design */
+.errorMessage {
+    padding: 14px 18px;
+    background: #FEECEB;
+    color: #B42318;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+}
+
+/* Responsive Layout */
 
 @media (max-width: 1000px) {
     .statsGrid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .bookList {
+        grid-template-columns: 1fr;
     }
 }
 
 @media (max-width: 600px) {
-    .dashboard {
-        gap: 24px;
+    .welcomeSection {
+        padding: 23px 20px;
     }
 
     .welcomeSection h2 {
@@ -228,34 +267,15 @@
     }
 
     .statsGrid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
         gap: 12px;
     }
 
-    .statCard {
-        padding: 16px;
-    }
-
-    .statCard h3 {
-        font-size: 24px;
-    }
-
-    .recentSection {
-        padding: 18px;
-    }
-
-    .sectionHeading h3 {
-        font-size: 19px;
-    }
-
     .bookItem {
-        gap: 10px;
+        flex-wrap: wrap;
     }
 
     .bookStatus {
-        padding: 5px 8px;
-        font-size: 10px;
-        white-space: normal;
-        text-align: center;
+        margin-left: 58px;
     }
 }

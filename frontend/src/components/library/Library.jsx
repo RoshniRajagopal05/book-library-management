@@ -1,5 +1,7 @@
 
 import { useEffect, useState } from "react";
+import Notification from "../common/Notification";
+
 import {
     BookOpen,
     Search,
@@ -22,7 +24,11 @@ function Library() {
     const [selectedStatus, setSelectedStatus] = useState("All");
 
     const [updatingBookId, setUpdatingBookId] = useState(null);
-    const [statusError, setStatusError] = useState("");
+
+    const [notification, setNotification] = useState({
+        type: "success",
+        message: ""
+    });
 
     // Fetch books from backend
     useEffect(() => {
@@ -33,9 +39,18 @@ function Library() {
 
                 const data = await getBooks();
                 setBooks(data);
+
             } catch (err) {
                 console.error("Error fetching books:", err);
-                setError("Unable to load your books. Please try again.");
+
+                if (err.response?.status === 401) {
+                    setError("Your session has expired. Please log in again.");
+                } else if (!err.response) {
+                    setError("Unable to connect to the server.");
+                } else {
+                    setError("Unable to load your books. Please try again.");
+                }
+
             } finally {
                 setLoading(false);
             }
@@ -46,29 +61,47 @@ function Library() {
 
     // Update book reading status
     async function handleStatusChange(bookId, newStatus) {
-        try {
-            setUpdatingBookId(bookId);
-            setStatusError("");
+        setUpdatingBookId(bookId);
 
-            await updateBookStatus(bookId, newStatus);
+        setNotification({
+            type: "success",
+            message: ""
+        });
+
+        try {
+            const updatedBook = await updateBookStatus(bookId, newStatus);
 
             // Update the book in React state
             setBooks((previousBooks) =>
                 previousBooks.map((book) =>
                     book.id === bookId
-                        ? { ...book, status: newStatus }
+                        ? updatedBook
                         : book
                 )
             );
 
+            setNotification({
+                type: "success",
+                message: "Reading status updated successfully!"
+            });
+
         } catch (err) {
             console.error("Error updating book status:", err);
 
+            let errorMessage = "Unable to update reading status. Please try again.";
+
             if (err.response?.status === 401) {
-                setStatusError("Your session has expired. Please log in again.");
-            } else {
-                setStatusError("Unable to update reading status. Please try again.");
+                errorMessage = "Your session has expired. Please log in again.";
+            } else if (err.response?.status === 404) {
+                errorMessage = "Book not found.";
+            } else if (!err.response) {
+                errorMessage = "Unable to connect to the server.";
             }
+
+            setNotification({
+                type: "error",
+                message: errorMessage
+            });
 
         } finally {
             setUpdatingBookId(null);
@@ -92,18 +125,19 @@ function Library() {
     return (
         <div className={styles.libraryPage}>
 
-            {/* Page Heading */}
-            <section className={styles.pageHeading}>
-                <span className={styles.eyebrow}>
-                    YOUR PERSONAL COLLECTION
-                </span>
+          
 
-                <h2>My Library</h2>
-
-                <p>
-                    Every book has a story. Keep track of yours.
-                </p>
-            </section>
+            {/* Notification */}
+            <Notification
+                type={notification.type}
+                message={notification.message}
+                onClose={() =>
+                    setNotification({
+                        type: "success",
+                        message: ""
+                    })
+                }
+            />
 
             {/* Search and Filter */}
             <section className={styles.toolbar}>
@@ -143,13 +177,6 @@ function Library() {
                         Showing {filteredBooks.length} of {books.length} books
                     </span>
                 </div>
-            )}
-
-            {/* Status Update Error */}
-            {statusError && (
-                <p className={styles.errorMessage} role="alert">
-                    {statusError}
-                </p>
             )}
 
             {/* Loading */}
