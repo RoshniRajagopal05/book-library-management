@@ -10,7 +10,7 @@ from app.core.config import settings
 from app.core.logging_config import configure_logging
 from app.middleware.request_logging import RequestLoggingMiddleware
 from app.api.routes import auth
-
+from app.api.routes import books
 
 configure_logging()
 
@@ -56,6 +56,7 @@ app.include_router(
     auth.router,
     prefix="/api"
 )
+app.include_router(books.router, prefix="/api")
 
 
 @app.get("/")
