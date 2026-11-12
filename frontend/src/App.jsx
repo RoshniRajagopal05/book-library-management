@@ -8,6 +8,8 @@ import Sidebar from "./components/layout/Sidebar";
 import Header from "./components/layout/Header";
 
 import Dashboard from "./components/dashboard/Dashboard";
+import Library from "./components/library/Library";
+import AddBook from "./components/books/AddBook";
 
 import { useAuth } from "./context/AuthContext";
 
@@ -18,6 +20,7 @@ function App() {
 
     const { isAuthenticated, logout } = useAuth();
 
+    // Logout user
     function handleLogout() {
         logout();
         setActivePage("login");
@@ -44,50 +47,38 @@ function App() {
         );
     }
 
-    // Dashboard content
-    const pageContent = {
-        library: {
-            heading: "Your personal library",
-            description: "Your complete book collection will appear here."
-        },
-        "add-book": {
-            heading: "Add a new book",
-            description: "Start building your personal reading collection."
-        }
-    };
-
-    const currentContent = pageContent[activePage];
-
+    // Main application layout
     return (
         <div className={styles.appLayout}>
 
-           <Sidebar
-    activePage={activePage}
-    setActivePage={setActivePage}
-    onLogout={handleLogout}
-/>
+            {/* Sidebar */}
+            <Sidebar
+                activePage={activePage}
+                setActivePage={setActivePage}
+                onLogout={handleLogout}
+            />
 
             <div className={styles.mainArea}>
 
+                {/* Header */}
                 <Header activePage={activePage} />
 
                 <main className={styles.content}>
 
-                    {activePage === "dashboard" ? (
+                    {/* Dashboard */}
+                    {activePage === "dashboard" && (
                         <Dashboard />
-                    ) : (
-                        <section className={styles.welcomeCard}>
-                            <h2>{currentContent.heading}</h2>
-                            <p>{currentContent.description}</p>
-                        </section>
                     )}
 
-                    <button
-                        className={styles.primaryButton}
-                        onClick={handleLogout}
-                    >
-                        Log out
-                    </button>
+                    {/* My Library */}
+                    {activePage === "library" && (
+                        <Library />
+                    )}
+
+                    {/* Add Book */}
+                    {activePage === "add-book" && (
+                        <AddBook />
+                    )}
 
                 </main>
             </div>

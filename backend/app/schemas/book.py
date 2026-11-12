@@ -14,16 +14,9 @@ ReadingStatus = Literal[
 
 # Schema for adding a book
 class BookCreate(BaseModel):
-
-    title: str = Field(
-        min_length=1,
-        max_length=200
-    )
-
-    author: str = Field(
-        min_length=1,
-        max_length=150
-    )
+    title: str = Field(min_length=1, max_length=200)
+    author: str = Field(min_length=1, max_length=150)
+    status: ReadingStatus = "Want to Read"
 
 
 # Schema for updating reading status

@@ -1,0 +1,164 @@
+
+.addBookPage {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.pageHeading {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.eyebrow {
+    color: var(--color-accent);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+}
+
+.pageHeading h2 {
+    color: var(--color-primary);
+    font-size: 30px;
+}
+
+.pageHeading p {
+    color: var(--color-muted);
+    font-size: 14px;
+}
+
+.formCard {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    box-shadow: var(--shadow-card);
+    max-width: 650px;
+}
+
+.formIcon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F5F0E5;
+    color: var(--color-primary);
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.formCard h3 {
+    color: var(--color-primary);
+    font-size: 21px;
+}
+
+.formDescription {
+    color: var(--color-muted);
+    font-size: 13px;
+    margin-top: 5px;
+    margin-bottom: 26px;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.formGroup label {
+    color: var(--color-text);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.formGroup input,
+.formGroup select {
+    width: 100%;
+    height: 46px;
+    padding: 0 14px;
+
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+
+    color: var(--color-text);
+    font-size: 13px;
+    outline: none;
+
+    transition: border-color 0.2s ease;
+}
+
+.formGroup input:focus,
+.formGroup select:focus {
+    border-color: var(--color-primary);
+}
+
+.formGroup input::placeholder {
+    color: #A5A59E;
+}
+
+.submitButton {
+    width: 100%;
+    min-height: 46px;
+    border: none;
+    border-radius: var(--radius-sm);
+
+    background: var(--color-primary);
+    color: white;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: background 0.2s ease;
+}
+
+.submitButton:hover:not(:disabled) {
+    background: var(--color-primary-hover);
+}
+
+.submitButton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.successMessage {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 12px 14px;
+    margin-bottom: 18px;
+
+    background: #E5F3E9;
+    color: #27633B;
+
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+}
+
+.errorMessage {
+    padding: 12px 14px;
+    margin-bottom: 18px;
+
+    background: #FEECEB;
+    color: #B42318;
+
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+}
+
+@media (max-width: 600px) {
+    .pageHeading h2 {
+        font-size: 25px;
+    }
+
+    .formCard {
+        padding: 22px 18px;
+    }
+}

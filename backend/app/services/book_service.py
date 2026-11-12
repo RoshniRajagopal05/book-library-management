@@ -8,15 +8,12 @@ from app.schemas.book import BookCreate, ReadingStatus
 
 
 # Add a new book
-def create_book(
-    db: Session,
-    book_data: BookCreate,
-    current_user: User
-):
+def create_book(db, book_data, current_user):
 
     new_book = Book(
         title=book_data.title,
         author=book_data.author,
+        status=book_data.status,
         user_id=current_user.id
     )
 
@@ -25,7 +22,6 @@ def create_book(
     db.refresh(new_book)
 
     return new_book
-
 
 # Get books belonging to the logged-in user
 def get_user_books(
