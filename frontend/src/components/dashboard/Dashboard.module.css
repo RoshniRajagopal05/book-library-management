@@ -1,0 +1,261 @@
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Welcome Section */
+
+.welcomeSection {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.eyebrow {
+    color: var(--color-accent);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+}
+
+.welcomeSection h2 {
+    color: var(--color-primary);
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.welcomeSection p {
+    color: var(--color-muted);
+    font-size: 14px;
+}
+
+/* Statistics Grid */
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.statCard {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 22px;
+    box-shadow: var(--shadow-card);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.statCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(38, 60, 50, 0.1);
+}
+
+.statIcon {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F5F0E5;
+    color: var(--color-primary);
+    border-radius: 12px;
+    margin-bottom: 18px;
+}
+
+.statCard p {
+    color: var(--color-muted);
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.statCard h3 {
+    color: var(--color-primary);
+    font-size: 28px;
+    font-weight: 700;
+}
+
+/* Recent Books Section */
+
+.recentSection {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    box-shadow: var(--shadow-card);
+}
+
+.sectionHeading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.sectionHeading h3 {
+    color: var(--color-primary);
+    font-size: 22px;
+    margin-top: 4px;
+}
+
+.bookCount {
+    color: var(--color-muted);
+    font-size: 13px;
+}
+
+/* Book List */
+
+.bookList {
+    display: flex;
+    flex-direction: column;
+}
+
+.bookItem {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.bookItem:last-child {
+    border-bottom: none;
+}
+
+.bookIcon {
+    width: 48px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: #F2EDE1;
+    color: var(--color-primary);
+    border-radius: 7px;
+}
+
+.bookInfo {
+    flex: 1;
+    min-width: 0;
+}
+
+.bookInfo h4 {
+    color: var(--color-text);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.bookInfo p {
+    color: var(--color-muted);
+    font-size: 12px;
+    margin-top: 3px;
+}
+
+.bookStatus {
+    background: var(--color-want);
+    color: var(--color-primary);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* Empty State */
+
+.emptyState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 45px 20px;
+    color: var(--color-muted);
+}
+
+.emptyState svg {
+    color: var(--color-accent);
+    margin-bottom: 14px;
+}
+
+.emptyState h4 {
+    color: var(--color-primary);
+    font-size: 17px;
+    margin-bottom: 6px;
+}
+
+.emptyState p {
+    font-size: 13px;
+}
+
+/* Loading and Error Messages */
+
+.message {
+    color: var(--color-muted);
+    padding: 20px 0;
+}
+
+.errorMessage {
+    color: #B42318;
+    background: #FEECEB;
+    border-radius: var(--radius-sm);
+    padding: 14px 18px;
+    font-size: 14px;
+}
+
+/* Responsive Design */
+
+@media (max-width: 1000px) {
+    .statsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .dashboard {
+        gap: 24px;
+    }
+
+    .welcomeSection h2 {
+        font-size: 24px;
+    }
+
+    .statsGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .statCard {
+        padding: 16px;
+    }
+
+    .statCard h3 {
+        font-size: 24px;
+    }
+
+    .recentSection {
+        padding: 18px;
+    }
+
+    .sectionHeading h3 {
+        font-size: 19px;
+    }
+
+    .bookItem {
+        gap: 10px;
+    }
+
+    .bookStatus {
+        padding: 5px 8px;
+        font-size: 10px;
+        white-space: normal;
+        text-align: center;
+    }
+}

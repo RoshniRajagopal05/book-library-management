@@ -1,0 +1,106 @@
+
+/* ==============================
+   BOOK LIBRARY DESIGN SYSTEM
+================================ */
+
+:root {
+    /* Colors */
+    --color-background: #F7F5EF;
+    --color-surface: #FFFFFF;
+    --color-primary: #263C32;
+    --color-primary-hover: #1C3027;
+    --color-accent: #D5A34B;
+    --color-text: #282A27;
+    --color-muted: #85877F;
+    --color-border: #E8E5DC;
+
+    /* Reading status colors */
+    --color-want: #E9E2D3;
+    --color-reading: #DCE9E0;
+    --color-completed: #E4E2F0;
+
+    /* Typography */
+    --font-primary: 'Inter', Arial, sans-serif;
+
+    /* Spacing */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+    --space-2xl: 48px;
+
+    /* Border radius */
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+
+    /* Shadows */
+    --shadow-card: 0 4px 20px rgba(38, 60, 50, 0.06);
+}
+
+/* ==============================
+   RESET
+================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--color-background);
+    color: var(--color-text);
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+/* ==============================
+   COMMON ELEMENTS
+================================ */
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+#root {
+    min-height: 100vh;
+}
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow-x: hidden;
+}
